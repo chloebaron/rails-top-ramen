@@ -1,0 +1,13 @@
+@import 'components/sidebar';
+
+.dash-body {
+  background: url(https://images.unsplash.com/photo-1461727885569-b2ddec0c4328?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1600&h=900&fit=crop&ixid=eyJhcHBfaWQiOjF9&s=d991236329966001ca5951d003684575);
+  height: 100vh;
+  background-size: cover;
+  margin: 0;
+}
+
+.main {
+  text-align: center;
+  margin-left: 15%;
+}
