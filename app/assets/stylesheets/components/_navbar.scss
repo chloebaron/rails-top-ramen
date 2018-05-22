@@ -28,10 +28,15 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 5px;
+  a {
+    font-size: 16px;
+  }
 }
 
 .navbar-wagon-right:hover {
+  margin-bottom: -2px;
   border-bottom: 2px solid white;
+  font-size: 32px;
 }
 /* Basic navbar item */
 .navbar-wagon-item {
