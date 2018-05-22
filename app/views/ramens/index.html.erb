@@ -14,10 +14,11 @@
               <h4><%= ramen.name %></h4>
               <p><%= ramen.description.truncate_words(8) %></p>
             </div>
-
-            <div class="ramen-actions text-center">
-              <%= link_to '<i class="fas fa-star"></i>'.html_safe, '#' %>
-            </div>
+            <% if ramen.users.include? @user %>
+              <div class="ramen-actions text-center">
+                <%= link_to '<i class="fas fa-star"></i>'.html_safe, '#' %>
+              </div>
+            <% end %>
           </div>
         </div>
       <% end %>
