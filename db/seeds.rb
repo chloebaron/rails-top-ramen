@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "nokogiri"
 require 'open-uri'
+require 'faker'
 
 url = 'https://greatist.com/eat/healthier-ramen-recipes'
 names = Nokogiri::HTML(open(url).read).search('.title-wrapper h3 a').map do |e|
@@ -19,7 +20,10 @@ end
 
 # p names.size == descriptions.size
 names.zip(descriptions).each do |e|
-  Ramen.create(name: e.first, description: e.last)
+  user = User.new(email:"#{Faker::Pokemon.name}@#{Faker::Pokemon.location.gsub(" ", "")}.com", password:"testing")
+  user.save!
+  ramen = Ramen.new(name: e.first, description: e.last, user_id: user.id )
+  ramen.save!
 end
 
 
