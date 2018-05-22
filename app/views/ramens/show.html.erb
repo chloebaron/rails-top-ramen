@@ -7,5 +7,7 @@
     <!-- above placeholder for link_to favourite -->
     <p><%= @ramen.description %></p>
     <p>This ramen was brought to you by: User<i> <%= @ramen.user_id %> </i></p>
+    <%= link_to "Add to favourite", ramen_favourites_path(@ramen), method: :post, data: { confirm: "Are you sure?" }%>
+    <!-- The link 'add to favourite' is temporary, we still need to work with its style and position on show page -->
   </div>
 </div>
