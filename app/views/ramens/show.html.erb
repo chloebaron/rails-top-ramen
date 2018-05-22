@@ -1,0 +1,11 @@
+<div class="ramen-photo" style="background-image: url('https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1600&h=900&fit=crop&ixid=eyJhcHBfaWQiOjF9&s=20e4c4698221bea2095b10b4998d3be4');">
+  <%= render "shared/navbar" %>
+</div>
+<div class="container">
+  <div class="ramen-description">
+    <h2><%= @ramen.name %> <i class="fa fa-star"></h2></i>
+    <!-- above placeholder for link_to favourite -->
+    <p><%= @ramen.description %></p>
+    <p>This ramen was brought to you by: User<i> <%= @ramen.user_id %> </i></p>
+  </div>
+</div>
