@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <% @ramens.each do |ramen| %>
+      <div class="col-sm-4">
+        <div class="ramen-card">
+          <div class="">
+            <h4><%= ramen.name %></h4>
+            <p><%= ramen.description.truncate_words(8) %></p>
+          </div>
+
+          <div class="ramen-actions">
+            <%= link_to '<i class="fas fa-star"></i>'.html_safe, '#' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
