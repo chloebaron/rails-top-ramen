@@ -17,7 +17,6 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'nokogiri'
-
 gem 'devise'
 
 group :development do
