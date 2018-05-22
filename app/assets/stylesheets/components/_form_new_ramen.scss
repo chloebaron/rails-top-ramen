@@ -1,0 +1,23 @@
+form.new_ramen .form-group {
+  margin-top: 40px;
+
+  label {
+    font-family: 'Varela Round',sans-serif;
+    letter-spacing: .5px;
+    color: #666;
+  }
+}
+
+.btn-submit {
+  margin-top: 20px;
+  padding: 15px;
+  color: #fff;
+  background-color: #e13b2b;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  padding: .5rem .75rem;
+  transition: all .15s ease-in-out;
+}
