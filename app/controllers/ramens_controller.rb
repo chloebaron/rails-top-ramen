@@ -2,9 +2,11 @@ class RamensController < ApplicationController
   before_action :find_ramen, only: [:show, :destroy]
   def index
     @ramens = Ramen.all
+    @user = current_user
   end
 
   def show
+    @user = current_user
   end
 
   def new

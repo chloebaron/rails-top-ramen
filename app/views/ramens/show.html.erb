@@ -3,8 +3,14 @@
 </div>
 <div class="container">
   <div class="ramen-description">
-    <h2><%= @ramen.name %> <i class="fa fa-star"></h2></i>
     <!-- above placeholder for link_to favourite -->
+    <% if !@ramen.users.include? @user %> <!-- checks to see if user has not favorited the ramen -->
+      <h2><%= @ramen.name %> <i class="fa fa-star"></i></h2>
+      <%= link_to "Add Favorite", ramen_favourites_path(@ramen), method: :post %>
+    <% else %> <!-- Other wise, if the user has favorited the ramen, then show name with a yellow star-->
+       <h2><%= @ramen.name %> <i class="fa fa-star yellow"></i></h2>
+    <% end %>
+
     <p><%= @ramen.description %></p>
     <p>This ramen was brought to you by: User<i> <%= @ramen.user_id %> </i></p>
     <%= link_to "Add to favourite", ramen_favourites_path(@ramen), method: :post, data: { confirm: "Are you sure?" }%>
