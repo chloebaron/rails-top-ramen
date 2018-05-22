@@ -1,5 +1,10 @@
-body {
+.index-body {
   background: url(https://i.imgur.com/UiZ3jP9.jpg);
   background-size: cover;
   font-family: 'Poiret One', cursive;
+  margin-top: 0;
+}
+
+body {
+  height: 100vh;
 }

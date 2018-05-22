@@ -5,3 +5,5 @@ class Favourite < ApplicationRecord
   # so we have to add a validation for unique pair of ramen and user
   validates :user, uniqueness: { scope: :ramen }
 end
+
+
