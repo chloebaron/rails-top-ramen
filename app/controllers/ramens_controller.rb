@@ -8,12 +8,15 @@ class RamensController < ApplicationController
 
   def show
     @user = current_user
+    @review = Review.new
+    @reviews = Review.all
     authorize @ramen
   end
 
   def new
     @ramen = Ramen.new
     authorize @ramen
+
   end
 
   def create
