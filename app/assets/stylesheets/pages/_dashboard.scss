@@ -5,9 +5,36 @@
   height: 100vh;
   background-size: cover;
   margin: 0;
+  position: relative;
 }
 
 .main {
   text-align: center;
-  margin-left: 15%;
+  margin-left: 10%;
 }
+
+#user-reviews {
+  display:none;
+}
+
+#user-ramen {
+  display:none;
+  background: rgba(0, 0, 0, 0.1);
+  height:100vh;
+}
+
+#user-favs {
+  display:none;
+}
+
+input {
+  display: none;
+}
+
+input:checked + label {
+  width: 100%;
+  border-radius: 4px;
+  color: #E7C719;
+}
+
+
