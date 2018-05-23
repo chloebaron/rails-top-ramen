@@ -38,6 +38,6 @@ class RamensController < ApplicationController
   end
 
   def ramen_params
-    params.require(:ramen).permit(:name, :description)
+    params.require(:ramen).permit(:name, :description, :photo)
   end
 end

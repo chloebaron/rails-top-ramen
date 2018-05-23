@@ -2,23 +2,9 @@
   <%= render 'shared/navbar' %>
   <div class="container index-cards">
     <div class="row">
-      <!-- <div class="col-sm-12">
-      </div> -->
       <% @ramens.each do |ramen| %>
         <div class="col-xs-12 col-s-6 col-md-4">
           <div class="ramen-card">
-            <% if ramen.users.include? @user %>
-              <div class="ramen-actions">
-                <%= link_to '<i class="fa fa-star index;"></i>'.html_safe, '#' %>
-              </div>
-              <% end %>
-            <div class="ramen-image">
-              <!-- Above to link to the user image id from upload -->
-            </div>
-            <div class="ramen-content text-center">
-              <h4><%= ramen.name %></h4>
-              <p><%= ramen.description.truncate_words(8) %></p>
-            </div>
             <% if ramen.users.include? @user %>
               <% ramen.favourites.each  do |fav| %>
                 <% if fav.accepted == "Pending" %>
@@ -32,6 +18,13 @@
                 <% end %>
               <% end %>
             <% end %>
+            <div class="ramen-image">
+              <%= link_to (cl_image_tag ramen.photo, height: 150, crop: :fill), ramen_path(ramen.id) %>
+            </div>
+            <div class="ramen-content text-center">
+              <h4><%= ramen.name %></h4>
+              <p><%= ramen.description.truncate_words(8) %></p>
+            </div>
           </div>
         </div>
       <% end %>

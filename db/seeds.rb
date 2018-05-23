@@ -22,8 +22,7 @@ end
 names.zip(descriptions).each do |e|
   user = User.new(email:"#{Faker::Pokemon.name}@#{Faker::Pokemon.location.gsub(" ", "")}.com", password:"testing")
   user.save!
-  ramen = Ramen.new(name: e.first, description: e.last, user_id: user.id )
+  ramen = Ramen.new(name: e.first, description: e.last, user_id: user.id)
+  ramen.remote_photo_url = "https://source.unsplash.com/1600x900/?ramen-noodles"
   ramen.save!
 end
-
-
