@@ -12,7 +12,20 @@
 }
 
 
-.fav-tab {
+// .fav-tab {
+//   text-align: center;
+//   height: 120px; /* Full-height: remove this if you want "auto" height */
+//   width: 10%; /* Set the width of the sidebar */
+//   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+//   z-index: 1; /* Stay on top */
+//   left: 0;
+//   background: rgba(255, 255, 255, 0.7);
+//   overflow-x: hidden; /* Disable horizontal scroll */
+//   position: absolute;
+//   top:180px;
+// }
+
+.ramen-tab {
   text-align: center;
   height: 120px; /* Full-height: remove this if you want "auto" height */
   width: 10%; /* Set the width of the sidebar */
@@ -25,7 +38,7 @@
   top:180px;
 }
 
-.ramen-tab {
+.review-tab {
   text-align: center;
   height: 120px; /* Full-height: remove this if you want "auto" height */
   width: 10%; /* Set the width of the sidebar */
@@ -38,7 +51,7 @@
   top:300px;
 }
 
-.review-tab {
+.requests-tab{
   text-align: center;
   height: 120px; /* Full-height: remove this if you want "auto" height */
   width: 10%; /* Set the width of the sidebar */

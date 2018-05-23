@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2018_05_23_170840) do
     t.bigint "ramen_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "accepted", default: "Pending"
     t.index ["ramen_id"], name: "index_favourites_on_ramen_id"
     t.index ["user_id"], name: "index_favourites_on_user_id"
   end

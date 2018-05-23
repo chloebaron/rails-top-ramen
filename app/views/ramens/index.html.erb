@@ -2,15 +2,21 @@
   <%= render 'shared/navbar' %>
   <div class="container index-cards">
     <div class="row">
-      <!-- <div class="col-sm-12">
-      </div> -->
       <% @ramens.each do |ramen| %>
         <div class="col-xs-12 col-s-6 col-md-4">
           <div class="ramen-card">
             <% if ramen.users.include? @user %>
-              <div class="ramen-actions">
-                <%= link_to '<i class="fa fa-star index;"></i>'.html_safe, '#' %>
-              </div>
+              <% ramen.favourites.each  do |fav| %>
+                <% if fav.accepted == "Pending" %>
+                  <div class="ramen-actions text-center">
+                    <i class="fas fa-user-clock"></i>
+                  </div>
+                <% elsif fav.accepted == "Accepted" %>
+                  <div class="ramen-actions text-center">
+                    <i class="fa fa-star index;"></i>
+                  </div>
+                <% end %>
+              <% end %>
             <% end %>
             <div class="ramen-image">
               <%= link_to (cl_image_tag ramen.photo, height: 150, crop: :fill), ramen_path(ramen.id) %>
@@ -25,5 +31,4 @@
     </div>
   </div>
 </div>
-
 
