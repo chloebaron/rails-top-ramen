@@ -3,6 +3,7 @@ ruby '2.4.4'
 
 gem 'bootsnap', require: false
 gem 'figaro'
+gem 'cloudinary'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma'
@@ -18,6 +19,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'nokogiri'
 gem 'devise'
+gem 'pundit'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

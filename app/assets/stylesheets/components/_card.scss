@@ -6,22 +6,30 @@
   margin: 30px;
   padding: 0 5px;
   border-radius: 10px;
-}
-
-.ramen-actions {
-  position: absolute;
-  top: 90%;
-  margin-left: 50%;
-  margin-top: 5px;
-  font-size: 12px;
-  a {
-   text-decoration: none;
-   color: #E7C719;
-   font-size: 14px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .ramen-content {
-  position: absolute;
-  top: 125px;
+  flex: 0 0 50%;
 }
+
+.ramen-image {
+  margin: 0 auto;
+  flex: 0 0 30%;
+  max-width: 100%;
+}
+
+.ramen-action {
+  flex: 0 0 auto;
+  position: absolute;
+  top: 10px;
+  font-size: 16px;
+  .fa-star .index {
+   text-decoration: none;
+   color: #E7C719;
+  }
+}
+
