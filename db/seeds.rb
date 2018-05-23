@@ -9,6 +9,8 @@ require "nokogiri"
 require 'open-uri'
 require 'faker'
 
+Ramen.destroy_all
+
 url = 'https://greatist.com/eat/healthier-ramen-recipes'
 names = Nokogiri::HTML(open(url).read).search('.title-wrapper h3 a').map do |e|
    e.text.split('. ').last
