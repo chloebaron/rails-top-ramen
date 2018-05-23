@@ -1,17 +1,71 @@
 <div class="dash-body">
-  <div class="sidenav">
-    <div class="user-actions">
-      <%= image_tag "https://i.imgur.com/g2b727j.png", class: "avatar" %>
+  <div class="sidenav-img">
+    <%= image_tag "https://i.imgur.com/g2b727j.png", class: "avatar" %><!--     <div id="user-actions">
 
-      <h2><%= link_to "Favorites", "#" %></h2>
+      <div class="tabs">
+        <input id="favs" type="radio" name="tabs">
+        <label for="favs"><h2> Favorites </h2></label>
 
-      <h2><%= link_to "Ramen", "#" %></h2>
+        <input id="ramens" type="radio" name="tabs">
+        <label for="ramens"><h2> Ramen </h2></label>
 
-      <h2><%= link_to "Reviews", "#" %></h2>
-    </div>
+        <input id="reviews" type="radio" name="tabs">
+        <label for="reviews"><h2> Reviews </h2></label>
+      </div>
+    </div> -->
   </div>
+
+  <div id="user-tabs">
+<!--     <div class="fav-tab">
+      <input id="favs" type="radio" name="tabs">
+      <label for="favs"><h2> Favorites </h2></label>
+    </div> -->
+
+    <div class="ramen-tab">
+      <input id="ramens" type="radio" name="tabs">
+      <label for="ramens"><h2> Ramen </h2></label>
+    </div>
+
+    <div class="review-tab">
+      <input id="reviews" type="radio" name="tabs">
+      <label for="reviews"><h2> Reviews </h2></label>
+    </div>
+
+    <div class="requests-tab">
+      <input id="requests" type="radio" name="tabs">
+      <label for="requests"><h2> Requests </h2></label>
+    </div>
+
+  </div>
+
+  <div class="sidenav-bottom">
+  </div>
+
   <div class="main">
-    <h1>Hello User</h1>
+    <div class="content" id="user-ramen">
+      <h1>Hello User</h1>
+      <% @user.ramens.each do |ramen| %>
+
+        <h3><%= ramen.name %></h3>
+      <% end %>
+    </div>
+
+
+    <div class="content" id="user-reviews">
+      <h1>Bonjour</h1>
+    </div>
+
+    <div class="content" id="user-requests">
+      <% @user.ramens.each do |ramen| %>
+        <% ramen.favourites.each do |fav| %>
+          <%= link_to "Accept", favourite_path(fav), method: :patch %>
+          <%= link_to "Decline", favourite_path(fav), method: :delete %>
+          <% if fav.accepted == "Pending" %>
+            <h3><%= fav.user.email %> wants to add <%= fav.ramen.name %> to their favorite's list</h3>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
   <%= render 'shared/favourites' %>
