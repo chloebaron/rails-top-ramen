@@ -58,10 +58,10 @@
     <div class="content" id="user-requests">
       <% @user.ramens.each do |ramen| %>
         <% ramen.favourites.each do |fav| %>
-          <%= link_to "Accept",favourite_, %>
+          <%= link_to "Accept", favourite_path(fav), method: :patch %>
+          <%= link_to "Decline", favourite_path(fav), method: :delete %>
           <% if fav.accepted == "Pending" %>
             <h3><%= fav.user.email %> wants to add <%= fav.ramen.name %> to their favorite's list</h3>
-
           <% end %>
         <% end %>
       <% end %>

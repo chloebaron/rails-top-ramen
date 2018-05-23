@@ -6,7 +6,15 @@ class FavouritesController < ApplicationController
   end
 
   def update
-    Favourite.joins(:)
+    @fav = Favourite.find(params[:id])
+    @fav.accepted = "Acccepted"
+    @fav.save
+    redirect_to dashboard_path
+  end
 
+  def destroy
+    @fav = Favourite.find(params[:id])
+    @fav.destroy
+    redirect_to dashboard_path
   end
 end
