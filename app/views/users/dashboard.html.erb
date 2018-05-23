@@ -16,10 +16,10 @@
   </div>
 
   <div id="user-tabs">
-    <div class="fav-tab">
+<!--     <div class="fav-tab">
       <input id="favs" type="radio" name="tabs">
       <label for="favs"><h2> Favorites </h2></label>
-    </div>
+    </div> -->
 
     <div class="ramen-tab">
       <input id="ramens" type="radio" name="tabs">
@@ -30,16 +30,18 @@
       <input id="reviews" type="radio" name="tabs">
       <label for="reviews"><h2> Reviews </h2></label>
     </div>
+
+    <div class="requests-tab">
+      <input id="requests" type="radio" name="tabs">
+      <label for="requests"><h2> Requests </h2></label>
+    </div>
+
   </div>
 
   <div class="sidenav-bottom">
   </div>
 
   <div class="main">
-    <div class="content" id="user-favs">
-      <h1>Hello</h1>
-    </div>
-
     <div class="content" id="user-ramen">
       <h1>Hello User</h1>
       <% @user.ramens.each do |ramen| %>
@@ -51,6 +53,18 @@
 
     <div class="content" id="user-reviews">
       <h1>Bonjour</h1>
+    </div>
+
+    <div class="content" id="user-requests">
+      <% @user.ramens.each do |ramen| %>
+        <% ramen.favourites.each do |fav| %>
+          <%= link_to "Accept",favourite_, %>
+          <% if fav.accepted == "Pending" %>
+            <h3><%= fav.user.email %> wants to add <%= fav.ramen.name %> to their favorite's list</h3>
+
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
