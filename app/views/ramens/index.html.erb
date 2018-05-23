@@ -7,21 +7,25 @@
       <% @ramens.each do |ramen| %>
         <div class="col-xs-12 col-s-6 col-md-4">
           <div class="ramen-card">
+            <% if ramen.users.include? @user %>
+              <div class="ramen-actions">
+                <%= link_to '<i class="fa fa-star index;"></i>'.html_safe, '#' %>
+              </div>
+              <% end %>
             <div class="ramen-image">
-                <%= link_to "No image yet",ramen_path(ramen.id) %>
+              <%= link_to cl_image_tag("fcehgnmsxkvxpwlvpxnm", height: 150, crop: :fill), ramen_path(ramen.id) %>
+              <!-- Above to link to the user image id from upload -->
             </div>
             <div class="ramen-content text-center">
               <h4><%= ramen.name %></h4>
               <p><%= ramen.description.truncate_words(8) %></p>
             </div>
-            <% if ramen.users.include? @user %>
-              <div class="ramen-actions text-center">
-                <%= link_to '<i class="fa fa-star index;"></i>'.html_safe, '#' %>
-              </div>
-            <% end %>
+
           </div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
+
