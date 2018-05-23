@@ -1,10 +1,12 @@
-let actions = document.getElementById("user-tabs")
+let actions = document.getElementById("user-tabs");
 
-const userRamen = document.getElementById("user-ramen")
+const userRamen = document.getElementById("user-ramen");
 
-const userReviews = document.getElementById("user-reviews")
+const userReviews = document.getElementById("user-reviews");
 
-const userFav = document.getElementById("user-favs")
+// const userFav = document.getElementById("user-favs");
+
+const userReq = document.getElementById("user-requests");
 
 const reviewContent = element => {
    if (element.checked === true) {
@@ -14,13 +16,13 @@ const reviewContent = element => {
   }
 }
 
-const favContent = element => {
-  if (element.checked === true) {
-    userFav.style.display = "block";
-  } else {
-    userFav.style.display = "none";
-  }
-}
+// const favContent = element => {
+//   if (element.checked === true) {
+//     userFav.style.display = "block";
+//   } else {
+//     userFav.style.display = "none";
+//   }
+// }
 
 const ramenContent = element => {
   if (element.checked === true) {
@@ -30,19 +32,31 @@ const ramenContent = element => {
   }
 }
 
+const requestContent = element => {
+  if (element.checked === true) {
+    userReq.style.display = "block";
+   } else {
+    userReq.style.display = "none";
+  }
+}
+
 const show = () => {
 
-  let ramenBox = document.getElementById("ramens");
+  let ramenInput= document.getElementById("ramens");
 
-  let favBox = document.getElementById("favs");
+  // let favInput = document.getElementById("favs");
 
-  let reviewBox = document.getElementById("reviews");
+  let reviewInput = document.getElementById("reviews");
 
-  ramenContent(ramenBox);
+  let requestInput = document.getElementById("requests");
 
-  favContent(favBox);
+  ramenContent(ramenInput);
 
-  reviewContent(reviewBox);
+  favContent(favInput);
+
+  reviewContent(reviewInput);
+
+  requestContent(requestInput);
 }
 
 actions.addEventListener("click", show);
