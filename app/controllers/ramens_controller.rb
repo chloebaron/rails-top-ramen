@@ -2,8 +2,7 @@ class RamensController < ApplicationController
   before_action :find_ramen, only: [:show, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
-    @ramens = Ramen.all
-    @restaurants = policy_scope(Ramen).order(created_at: :DESC)
+    @ramens = policy_scope(Ramen)
     @user = current_user
   end
 
