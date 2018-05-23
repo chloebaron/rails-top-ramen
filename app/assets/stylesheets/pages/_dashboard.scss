@@ -15,16 +15,23 @@
 
 #user-reviews {
   display:none;
+  background: rgba(0, 0, 0, 0.3);
+  height:100vh;
+  color: #E7C719;
 }
 
 #user-ramen {
   display:none;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.3);
   height:100vh;
+  color: #E7C719;
 }
 
-#user-favs {
+#user-requests {
   display:none;
+  background: rgba(0, 0, 0, 0.3);
+  height:100vh;
+  color: #E7C719;
 }
 
 #user-tabs input {
@@ -32,7 +39,7 @@
 }
 
 input:checked + label {
-  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   color: #E7C719;
 }

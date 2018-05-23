@@ -5,7 +5,7 @@
   <div class="navbar-wagon-right hidden-xs hidden-sm">
     <% if user_signed_in? %>
       <!-- Links when logged in -->
-      <%= link_to "Home", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Dashboard", dashboard_path(current_user.id), class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Ramens", ramens_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Favourites", favourites_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
