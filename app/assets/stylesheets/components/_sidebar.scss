@@ -1,8 +1,13 @@
+.sidebar {
+  position: fixed;
+  width: 10%;
+  z-index: 1;
+}
+
 .sidenav-img {
   text-align: center;
   height: 180px;
   width: 10%; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
@@ -11,25 +16,10 @@
   padding-top: 20px;
 }
 
-
-// .fav-tab {
-//   text-align: center;
-//   height: 120px; /* Full-height: remove this if you want "auto" height */
-//   width: 10%; /* Set the width of the sidebar */
-//   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-//   z-index: 1; /* Stay on top */
-//   left: 0;
-//   background: rgba(255, 255, 255, 0.7);
-//   overflow-x: hidden; /* Disable horizontal scroll */
-//   position: absolute;
-//   top:180px;
-// }
-
-.ramen-tab {
+.ramen-tab label {
   text-align: center;
   height: 120px; /* Full-height: remove this if you want "auto" height */
   width: 10%; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
   left: 0;
   background: rgba(255, 255, 255, 0.7);
@@ -38,11 +28,10 @@
   top:180px;
 }
 
-.review-tab {
+.review-tab label {
   text-align: center;
   height: 120px; /* Full-height: remove this if you want "auto" height */
   width: 10%; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
   left: 0;
   background: rgba(255, 255, 255, 0.7);
@@ -51,11 +40,10 @@
   top:300px;
 }
 
-.requests-tab{
+.requests-tab label {
   text-align: center;
   height: 120px; /* Full-height: remove this if you want "auto" height */
   width: 10%; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
   left: 0;
   background: rgba(255, 255, 255, 0.7);
@@ -65,9 +53,8 @@
 }
 
 .sidenav-bottom {
-  height: 100px; /* Full-height: remove this if you want "auto" height */
+  height: calc(100vh - 100px); /* Full-height: remove this if you want "auto" height */
   width: 10%; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
   left: 0;
   background-color: rgba(255, 255, 255, 0.7);

@@ -8,13 +8,6 @@ const userReviews = document.getElementById("user-reviews");
 
 const userReq = document.getElementById("user-requests");
 
-const reviewContent = element => {
-   if (element.checked === true) {
-    userReviews.style.display = "block";
-  } else {
-    userReviews.style.display = "none";
-  }
-}
 
 // const favContent = element => {
 //   if (element.checked === true) {
@@ -23,6 +16,15 @@ const reviewContent = element => {
 //     userFav.style.display = "none";
 //   }
 // }
+
+const reviewContent = element => {
+   if (element.checked === true) {
+    userReviews.style.display = "block";
+  } else {
+    userReviews.style.display = "none";
+  }
+}
+
 
 const ramenContent = element => {
   if (element.checked === true) {
@@ -52,7 +54,7 @@ const show = () => {
 
   ramenContent(ramenInput);
 
-  favContent(favInput);
+  // favContent(favInput);
 
   reviewContent(reviewInput);
 
