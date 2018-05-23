@@ -3,8 +3,9 @@ class Ramen < ApplicationRecord
   has_many :favourites
   has_many :users, through: :favourites
 
+  mount_uploader :photo, PhotoUploader
+
   # specify a ramen will have many users to fav it.
   # ramen.user will return the creator
   # ramen.users will give you fav users
-
 end
