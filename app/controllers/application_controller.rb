@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+    def after_sign_in_path_for(resource)
+      request.env['omniauth.origin'] || stored_location_for(resource) || dashboard_path
+    end
+
   private
 
   def skip_pundit?
