@@ -10,6 +10,7 @@
         <%= link_to(ramen_favourites_path(@ramen), method: :post) do %>
           <i class="fa fa-star favourite"></i>
         <% end %>
+
         </h2>
       <% else %> <!-- Other wise, if the user has favorited the ramen, then show name with a yellow star-->
          <h2><%= @ramen.name %> <i class="fa fa-star " style= "color: #E7C719;"></i></h2>
