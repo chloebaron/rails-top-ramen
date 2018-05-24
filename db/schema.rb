@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_23_170840) do
+ActiveRecord::Schema.define(version: 2018_05_24_000225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "favourites", force: :cascade do |t|
     t.bigint "user_id"
@@ -33,6 +39,25 @@ ActiveRecord::Schema.define(version: 2018_05_23_170840) do
     t.datetime "updated_at", null: false
     t.string "photo"
     t.index ["user_id"], name: "index_ramens_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.bigint "ramen_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ramen_id"], name: "index_reviews_on_ramen_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.bigint "ramen_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_tags_on_category_id"
+    t.index ["ramen_id"], name: "index_tags_on_ramen_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,4 +80,8 @@ ActiveRecord::Schema.define(version: 2018_05_23_170840) do
   add_foreign_key "favourites", "ramens"
   add_foreign_key "favourites", "users"
   add_foreign_key "ramens", "users"
+  add_foreign_key "reviews", "ramens"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "tags", "categories"
+  add_foreign_key "tags", "ramens"
 end
