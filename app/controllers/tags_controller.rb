@@ -23,4 +23,5 @@ class TagsController < ApplicationController
   def tag_params
     params.require(:tag).permit(:ramen_id, :category)
   end
+
 end

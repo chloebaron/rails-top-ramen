@@ -9,6 +9,9 @@
 
         <% if @favourite.accepted == "Pending"%>
         <%= @ramen.name %>
+        <% @tags.each do |tag| %>
+          <%= tag.category %>
+        <% end %>
          <%= "Pending" %>
         <% elsif @favourite.accepted == "Accepted" %>
 
@@ -17,6 +20,9 @@
 
         <% else %>
           <h2><%= @ramen.name %>
+          <% @tags.each do |tag| %>
+            <%= tag.category %>
+          <% end %>
           <%= link_to(ramen_favourites_path(@ramen), method: :post) do %>
             <i class="fa fa-star favourite" id = "fav-request" ></i>
           <% end %>
@@ -26,6 +32,9 @@
       <% end %>
     <% else %>
       <h2><%= @ramen.name %></h2>
+      <% @tags.each do |tag| %>
+        <%= tag.category %>
+      <% end %>
     <% end %>
     <p><%= @ramen.description %></p>
     <p>This ramen was brought to you by: User<i> <%= @ramen.user.email %> </i></p>
