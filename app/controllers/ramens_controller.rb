@@ -1,5 +1,5 @@
 class RamensController < ApplicationController
-  before_action :find_ramen, only: [:show, :destroy]
+  before_action :find_ramen, only: [:show, :destroy, :edit, :update]
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @ramens = policy_scope(Ramen)
@@ -16,7 +16,6 @@ class RamensController < ApplicationController
   def new
     @ramen = Ramen.new
     authorize @ramen
-
   end
 
   def create
@@ -31,7 +30,21 @@ class RamensController < ApplicationController
     end
   end
 
+  def edit
+    @tags = Tag.where(ramen_id: params[:id])
+    @tag = Tag.new
+    authorize @tag
+    authorize @tags
+    authorize @ramen
+  end
+
+  def update
+    authorize @ramen
+    @ramen.update(ramen_params)
+  end
+
   def destroy
+    authorize @ramen
   end
 
   private

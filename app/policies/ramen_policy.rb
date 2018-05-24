@@ -5,13 +5,18 @@ class RamenPolicy < ApplicationPolicy
     end
   end
 
+  def create?
+    true
+  end
+
+  def edit?
+    true
+  end
+
   def destroy?
     user_is_owner?
   end
 
-  def create?
-    true
-  end
 
   private
 

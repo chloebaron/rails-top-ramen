@@ -1,4 +1,4 @@
-class ReviewPolicy < ApplicationPolicy
+class TagPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope
@@ -9,13 +9,11 @@ class ReviewPolicy < ApplicationPolicy
     true
   end
 
-  def destroy?
-    user_is_owner?
+  def edit?
+    true
   end
 
-  private
-
-  def user_is_owner?
+  def destroy
     record.user == user
   end
 end
