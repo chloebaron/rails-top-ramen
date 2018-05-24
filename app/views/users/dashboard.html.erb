@@ -34,14 +34,15 @@
           <div class="row">
             <% @user.ramens.each do |ramen| %>
               <div class="col-xs-12 col-s-6 col-md-3">
-                <div class="ramen-card">
+              <div class="card user-ramen-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+                url('<%= cl_image_path ramen.photo, height: 300, width: 300, crop: :fill %>')">
                   <div class="user-ramen-content">
-                    <%= link_to (cl_image_tag ramen.photo, height: 150, crop: :fill), ramen_path(ramen) %>
-                    <%= link_to(ramen_path(ramen)) do%>
-                    <h4><%= ramen.name %></h4>
-                    <% end %>
-                    <p><%= ramen.description.truncate(3) %></p>
+                    <div class="card-ramen-name">
+                      <%= ramen.name %>
+                      <!-- <p><%= ramen.description.truncate(3) %></p> -->
+                    </div>
                   </div>
+                  <%= link_to " ", ramen_path(ramen), class: "card-link"%>
                 </div>
               </div>
             <% end %>
