@@ -14,6 +14,12 @@ class TagPolicy < ApplicationPolicy
   end
 
   def destroy
-    record.user == user
+    user_is_owner?
+  end
+
+  private
+
+  def user_is_owner?
+    record.ramen.user == user
   end
 end

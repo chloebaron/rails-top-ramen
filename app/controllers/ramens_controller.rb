@@ -9,7 +9,7 @@ class RamensController < ApplicationController
   def show
     @user = current_user
     @review = Review.new
-    @reviews = Review.all
+    @reviews = Review.where(ramen_id: @ramen.id)
     authorize @ramen
   end
 

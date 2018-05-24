@@ -10,7 +10,7 @@ class RamenPolicy < ApplicationPolicy
   end
 
   def edit?
-    true
+    user_is_owner?
   end
 
   def destroy?
