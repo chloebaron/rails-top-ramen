@@ -44,7 +44,7 @@ const requestContent = element => {
 
 const show = () => {
 
-  let ramenInput= document.getElementById("ramens");
+  let ramenInput = document.getElementById("ramens");
 
   // let favInput = document.getElementById("favs");
 
@@ -62,3 +62,8 @@ const show = () => {
 }
 
 actions.addEventListener("click", show);
+
+
+document.querySelector('.ramen-tab label').click()
+
+
