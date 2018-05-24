@@ -41,8 +41,6 @@ class RamensController < ApplicationController
   def edit
     @tags = Tag.where(ramen_id: params[:id])
     @tag = Tag.new
-    authorize @tag
-    authorize @tags
     authorize @ramen
   end
 

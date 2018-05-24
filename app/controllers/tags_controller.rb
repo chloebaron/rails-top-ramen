@@ -6,7 +6,7 @@ class TagsController < ApplicationController
   def create
     if authorize Tag.create!(
       ramen_id: params[:id],
-      category_id: tag_params[:category_id],
+      category: tag_params[:category],
       )
     else
       render :new
@@ -21,6 +21,6 @@ class TagsController < ApplicationController
   private
 
   def tag_params
-    params.require(:tag).permit(:ramen_id, :category_id)
+    params.require(:tag).permit(:ramen_id, :category)
   end
 end
