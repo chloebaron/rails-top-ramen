@@ -16,6 +16,7 @@ class RamensController < ApplicationController
   def show
     @user = current_user
     @review = Review.new
+    @tags = Tag.where(ramen_id: params[:id])
     @reviews = Review.where(ramen_id: @ramen.id)
     @favourite = Favourite.where(user_id: @user.id, ramen_id: @ramen.id).first
     authorize @ramen
@@ -65,4 +66,5 @@ class RamensController < ApplicationController
   def ramen_params
     params.require(:ramen).permit(:name, :description, :photo)
   end
+
 end
