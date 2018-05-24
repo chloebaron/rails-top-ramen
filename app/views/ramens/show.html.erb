@@ -8,13 +8,11 @@
       <% unless @favourite.nil? %> <!-- checks to see if user has not favorited the ramen -->
 
         <% if @favourite.accepted == "Pending"%>
-        <%= @ramen.name %>
+          <h2><%= @ramen.name %> <i class="fas fa-user-clock"></i></h2>
         <% @tags.each do |tag| %>
           <%= tag.category %>
         <% end %>
-         <%= "Pending" %>
         <% elsif @favourite.accepted == "Accepted" %>
-
           <h2><%= @ramen.name %> <i class="fa fa-star " style= "color: #E7C719;"></i></h2>
         <% end %>
 
@@ -37,7 +35,11 @@
       <% end %>
     <% end %>
     <p><%= @ramen.description %></p>
-    <p>This ramen was brought to you by: User<i> <%= @ramen.user.email %> </i></p>
+    <% if @user %>
+      <p>Grasciously prepared by you</p>
+    <% else %>
+      <p>Created by: <i> <%= @ramen.user.email %> </i></p>
+    <% end %>
   </div>
 
   <div class="review">

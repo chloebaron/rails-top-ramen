@@ -17,8 +17,12 @@
   </div>
 
   <div class="sidenav-bottom">
-    <div class="home-button text-center">
-      <%= link_to "Home", ramens_path, class: "btn btn-warning" %>
+    <div class="buttons text-center" id="add-ramen">
+      <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_ramen_path %>
+    </div>
+
+    <div class="buttons text-center">
+      <%= link_to "Home", ramens_path, class: "btn btn-primary" %>
     </div>
   </div>
 
@@ -90,10 +94,15 @@
             <% @user.ramens.each do |ramen| %>
               <% ramen.favourites.each do |fav| %>
                 <% if fav.accepted == "Pending" %>
-                <div class="col-12">
-                  <h3><%= fav.user.email %> wants to add <%= fav.ramen.name %> to their favorite's list</h3>
-                  <%= link_to "Accept", favourite_path(fav), method: :patch %>
-                  <%= link_to "Decline", favourite_path(fav), method: :delete %>
+                <div class="col-12 ">
+                  <div class="pending-flex ">
+                    <p><%= fav.user.email %> wants to add <%= fav.ramen.name %> to their favorite's list</p>
+
+                    <div class="pending-actions">
+                      <%= link_to "Accept", favourite_path(fav), class: "btn btn-success", id: "accept-fav", method: :patch %>
+                      <%= link_to "Decline", favourite_path(fav), class: "btn btn-danger", id: "reject-fav", method: :delete %>
+                    </div>
+                  </div>
                 </div>
                   <!-- fix the duplicated display request -->
                 <% end %>

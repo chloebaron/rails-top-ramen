@@ -21,6 +21,7 @@ class FavouritesController < ApplicationController
 
   def destroy
     @fav = Favourite.find(params[:id])
+    authorize @fav
     @fav.destroy
     redirect_to dashboard_path
   end
