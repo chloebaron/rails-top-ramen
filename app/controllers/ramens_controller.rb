@@ -11,6 +11,7 @@ class RamensController < ApplicationController
     else
       @ramens = Ramen.all
     end
+
   end
 
   def show
