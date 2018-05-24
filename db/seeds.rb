@@ -9,26 +9,30 @@ require "nokogiri"
 require 'open-uri'
 require 'faker'
 
-# url = 'https://greatist.com/eat/healthier-ramen-recipes'
-# names = Nokogiri::HTML(open(url).read).search('.title-wrapper h3 a').map do |e|
-#    e.text.split('. ').last
-# end
-
-# descriptions = Nokogiri::HTML(open(url).read).search('.slide-body p:nth-child(2)').map do |e|
-#     e.text
-# end
-
-# # p names.size == descriptions.size
-# User.create!(email:"test1@test.com", password: "testing")
-# User.create!(email:"test2@test.com", password: "testing")
-
-# names.zip(descriptions).each do |e|
-#   ramen = Ramen.new(name: e.first, description: e.last, user_id: User.all[[0, 1].sample].id)
-#   ramen.remote_photo_url = "https://source.unsplash.com/1600x900/?ramen-noodles"
-#   ramen.save!
-# end
 
 
-Category.create!(name: 'Tsukemen')
-Category.create!(name: 'Kamo Nanban')
-Category.create!(name: 'Champon')
+Ramen.destroy_all
+
+url = 'https://greatist.com/eat/healthier-ramen-recipes'
+names = Nokogiri::HTML(open(url).read).search('.title-wrapper h3 a').map do |e|
+   e.text.split('. ').last
+end
+
+descriptions = Nokogiri::HTML(open(url).read).search('.slide-body p:nth-child(2)').map do |e|
+    e.text
+end
+
+
+User.create!(email:"test1@test.com", password: "testing")
+User.create!(email:"test2@test.com", password: "testing")
+
+names.zip(descriptions).each do |e|
+   ramen = Ramen.new(name: e.first, description: e.last, user_id: User.all[[0, 1].sample].id)
+   ramen.remote_photo_url = "https://source.unsplash.com/1600x900/?ramen-noodles"
+   ramen.save!
+ end
+
+
+Category.create!(name: 'Spicy')
+Category.create!(name: 'Sweet')
+Category.create!(name: 'Terriyaki')
