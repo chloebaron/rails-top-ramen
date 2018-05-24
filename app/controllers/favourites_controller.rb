@@ -14,7 +14,7 @@ class FavouritesController < ApplicationController
   def update
     @fav = Favourite.find(params[:id])
     authorize @fav
-    @fav.accepted = "Acccepted"
+    @fav.accepted = "Accepted"
     @fav.save
     redirect_to dashboard_path
   end

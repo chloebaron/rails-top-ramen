@@ -10,6 +10,7 @@ class RamensController < ApplicationController
     @user = current_user
     @review = Review.new
     @reviews = Review.where(ramen_id: @ramen.id)
+    @favourite = Favourite.where(user_id: @user.id, ramen_id: @ramen.id).first
     authorize @ramen
   end
 

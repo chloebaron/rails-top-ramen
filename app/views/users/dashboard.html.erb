@@ -36,7 +36,9 @@
               <div class="col-xs-12 col-s-6 col-md-3">
                 <div class="ramen-card">
                   <div class="user-ramen-content">
+                    <%= link_to(ramen_path(ramen)) do%>
                     <h4><%= ramen.name %></h4>
+                    <% end %>
                     <p><%= ramen.description.truncate(3) %></p>
                   </div>
                 </div>
@@ -51,6 +53,10 @@
     <div class="content" id="user-reviews">
       <div class="display">
         <h1>Bonjour</h1>
+        <% @reviews.each do |review| %>
+          <%=review.user.email  %>
+          <%= review.content %>
+        <% end %>
       </div>
     </div>
 

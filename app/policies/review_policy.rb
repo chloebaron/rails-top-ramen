@@ -5,6 +5,10 @@ class ReviewPolicy < ApplicationPolicy
     end
   end
 
+  def dashboard?
+    true
+  end
+
   def create?
     true
   end
