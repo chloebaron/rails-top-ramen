@@ -5,15 +5,24 @@
   <div class="ramen-description">
     <!-- above placeholder for link_to favourite -->
     <% unless @ramen.user == @user %>
-      <% unless @ramen.users.include? @user %> <!-- checks to see if user has not favorited the ramen -->
-        <h2><%= @ramen.name %>
-        <%= link_to(ramen_favourites_path(@ramen), method: :post) do %>
-          <i class="fa fa-star favourite"></i>
+      <% unless @favourite.nil? %> <!-- checks to see if user has not favorited the ramen -->
+
+        <% if @favourite.accepted == "Pending"%>
+        <%= @ramen.name %>
+         <%= "Pending" %>
+        <% elsif @favourite.accepted == "Accepted" %>
+
+          <h2><%= @ramen.name %> <i class="fa fa-star " style= "color: #E7C719;"></i></h2>
         <% end %>
 
+        <% else %>
+          <h2><%= @ramen.name %>
+          <%= link_to(ramen_favourites_path(@ramen), method: :post) do %>
+            <i class="fa fa-star favourite" id = "fav-request" ></i>
+          <% end %>
         </h2>
-      <% else %> <!-- Other wise, if the user has favorited the ramen, then show name with a yellow star-->
-         <h2><%= @ramen.name %> <i class="fa fa-star " style= "color: #E7C719;"></i></h2>
+       <!-- Other wise, if the user has favorited the ramen, then show name with a yellow star-->
+
       <% end %>
     <% else %>
       <h2><%= @ramen.name %></h2>
@@ -23,13 +32,12 @@
   </div>
 
   <div class="review">
-    <% @reviews.each do |review| %>
     <ul>
-      <li><%= review.user.email %></li>
-      <li><%= review.content %></li>
+      <% @reviews.each do |review| %>
+      <%= review.user.email %>
+      <%= review.content %>
     </ul>
     <% end %>
-  </div>
 </div>
 
 <%= render 'reviews/form_new', review: @review %>

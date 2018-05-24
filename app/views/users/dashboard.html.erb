@@ -36,7 +36,9 @@
               <div class="col-xs-12 col-s-6 col-md-3">
                 <div class="ramen-card">
                   <div class="user-ramen-content">
+                    <%= link_to(ramen_path(ramen)) do%>
                     <h4><%= ramen.name %></h4>
+                    <% end %>
                     <p><%= ramen.description.truncate(3) %></p>
                   </div>
                 </div>
@@ -51,6 +53,28 @@
     <div class="content" id="user-reviews">
       <div class="display">
         <h1>Bonjour</h1>
+        <h2>Reviews that you made</h2>
+        <ul>
+          <% unless @reviews_myself.nil? %>
+
+            <% @reviews_myself.each do |review| %>
+             <li><%=review.user.email %></li>
+             <li><%= review.content %></li>
+            <% end %>
+
+          <% end %>
+        </ul>
+        <h2>Reviews for your ramen</h2>
+        <ul>
+            <% unless @reviews_others.nil? %>
+
+            <% @reviews_others.each do |review| %>
+             <li><%=review.user.email %></li>
+             <li><%= review.content %></li>
+            <% end %>
+
+          <% end %>
+        </ul>
       </div>
     </div>
 
