@@ -1,59 +1,81 @@
 <div class="dash-body">
-  <div class="sidenav">
-      <div class="sidenav-img">
-        <%= image_tag "https://i.imgur.com/g2b727j.png", class: "avatar" %>
-      </div>
-
-    <div id="user-tabs">
-      <div class="ramen-tab">
-        <input id="ramens" type="radio" name="tabs">
-        <label for="ramens"><h2> Ramen </h2></label>
-      </div>
-
-      <div class="review-tab">
-        <input id="reviews" type="radio" name="tabs">
-        <label for="reviews"><h2> Reviews </h2></label>
-      </div>
-
-      <div class="requests-tab">
-        <input id="requests" type="radio" name="tabs">
-        <label for="requests"><h2> Requests </h2></label>
-      </div>
+  <div id="user-tabs">
+    <div class="ramen-tab">
+      <input id="ramens" type="radio" name="tabs">
+      <label for="ramens"><h3> Ramen </h3></label>
     </div>
 
-    <div class="sidenav-bottom">
-      <div class="nav-link text-center">
-        <%= link_to "Home", ramens_path, class: "btn btn-warning" %>
-      </div>
+    <div class="review-tab">
+      <input id="reviews" type="radio" name="tabs">
+      <label for="reviews"><h3> Reviews </h3></label>
+    </div>
+
+    <div class="requests-tab">
+      <input id="requests" type="radio" name="tabs">
+      <label for="requests"><h3> Requests </h3></label>
+    </div>
+  </div>
+
+  <div class="sidenav-bottom">
+    <div class="home-button text-center">
+      <%= link_to "Home", ramens_path, class: "btn btn-warning" %>
     </div>
   </div>
 
   <div class="main">
     <div class="content" id="user-ramen">
-      <h1>Hello User</h1>
-      <% @user.ramens.each do |ramen| %>
-
-        <h3><%= ramen.name %></h3>
-      <% end %>
+      <div class="display">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h1>Hello User</h1>
+            </div>
+          </div>
+          <div class="row">
+            <% @user.ramens.each do |ramen| %>
+              <div class="col-xs-12 col-s-6 col-md-3">
+                <div class="ramen-card">
+                  <div class="user-ramen-content">
+                    <h4><%= ramen.name %></h4>
+                    <p><%= ramen.description.truncate(3) %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
 
 
     <div class="content" id="user-reviews">
-      <h1>Bonjour</h1>
+      <div class="display">
+        <h1>Bonjour</h1>
+      </div>
     </div>
 
     <div class="content" id="user-requests">
-      <% @user.ramens.each do |ramen| %>
-        <% ramen.favourites.each do |fav| %>
-          <% if fav.accepted == "Pending" %>
-            <h3><%= fav.user.email %> wants to add <%= fav.ramen.name %> to their favorite's list</h3>
-            <%= link_to "Accept", favourite_path(fav), method: :patch %>
-            <%= link_to "Decline", favourite_path(fav), method: :delete %>
-            <!-- fix the duplicated display request -->
-          <% end %>
-        <% end %>
-      <% end %>
-      <h1>Hello</h1>
+      <div class="display">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1>Pending requests</h1>
+            </div>
+            <% @user.ramens.each do |ramen| %>
+              <% ramen.favourites.each do |fav| %>
+                <% if fav.accepted == "Pending" %>
+                <div class="col-12">
+                  <h3><%= fav.user.email %> wants to add <%= fav.ramen.name %> to their favorite's list</h3>
+                  <%= link_to "Accept", favourite_path(fav), method: :patch %>
+                  <%= link_to "Decline", favourite_path(fav), method: :delete %>
+                </div>
+                  <!-- fix the duplicated display request -->
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

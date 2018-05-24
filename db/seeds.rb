@@ -9,6 +9,8 @@ require "nokogiri"
 require 'open-uri'
 require 'faker'
 
+
+
 Ramen.destroy_all
 
 url = 'https://greatist.com/eat/healthier-ramen-recipes'
@@ -20,11 +22,17 @@ descriptions = Nokogiri::HTML(open(url).read).search('.slide-body p:nth-child(2)
     e.text
 end
 
-# p names.size == descriptions.size
+
+User.create!(email:"test1@test.com", password: "testing")
+User.create!(email:"test2@test.com", password: "testing")
+
 names.zip(descriptions).each do |e|
-  user = User.new(email:"#{Faker::Pokemon.name}@#{Faker::Pokemon.location.gsub(" ", "")}.com", password:"testing")
-  user.save!
-  ramen = Ramen.new(name: e.first, description: e.last, user_id: user.id)
-  ramen.remote_photo_url = "https://source.unsplash.com/1600x900/?ramen-noodles"
-  ramen.save!
-end
+   ramen = Ramen.new(name: e.first, description: e.last, user_id: User.all[[0, 1].sample].id)
+   ramen.remote_photo_url = "https://source.unsplash.com/1600x900/?ramen-noodles"
+   ramen.save!
+ end
+
+
+Category.create!(name: 'Spicy')
+Category.create!(name: 'Sweet')
+Category.create!(name: 'Terriyaki')

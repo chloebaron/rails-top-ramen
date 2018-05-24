@@ -19,6 +19,18 @@
       <h2><%= @ramen.name %></h2>
     <% end %>
     <p><%= @ramen.description %></p>
-    <p>This ramen was brought to you by: User<i> <%= @ramen.user_id %> </i></p>
+    <p>This ramen was brought to you by: User<i> <%= @ramen.user.email %> </i></p>
+  </div>
+
+  <div class="review">
+    <% @reviews.each do |review| %>
+    <ul>
+      <li><%= review.user.email %></li>
+      <li><%= review.content %></li>
+    </ul>
+    <% end %>
   </div>
 </div>
+
+<%= render 'reviews/form_new', review: @review %>
+<%= link_to 'Edit', edit_ramen_path(@ramen) %>

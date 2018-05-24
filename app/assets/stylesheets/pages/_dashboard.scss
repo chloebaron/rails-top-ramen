@@ -11,32 +11,68 @@
   margin-left: 10%;
 }
 
-#user-reviews {
+#user-ramen {
+  margin-top: 0;
   display:none;
   background: rgba(0, 0, 0, 0.3);
-  height:100vh;
+  height: 100vh;
   color: #E7C719;
+  position: relative;
+  top: 68px;
+  position: fixed;
+  overflow-y: auto;
 }
 
-#user-ramen {
+#user-reviews {
+  margin-top: 0;
   display:none;
   background: rgba(0, 0, 0, 0.3);
   height:100vh;
   color: #E7C719;
+  position: relative;
+  top: 68px;
+  position: fixed;
+  overflow-y: auto;
+  width: 100%;
 }
+
 
 #user-requests {
+  margin-top: 0;
   display:none;
   background: rgba(0, 0, 0, 0.3);
   height:100vh;
   color: #E7C719;
+  position: relative;
+  top: 68px;
+  position: fixed;
+  overflow-y: auto;
 }
 
 #user-tabs input {
   display: none;
 }
 
+#user-tabs label {
+
+}
+
+#user-tabs {
+
+}
+
+.user-ramen-content {
+  position: absolute;
+  bottom: 2%;
+}
+
+.display h1 {
+padding: 20px;
+margin-top: 0;
+}
+
 input:checked + label {
+  font-size: 20px;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   color: #E7C719;
