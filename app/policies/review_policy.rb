@@ -1,7 +1,7 @@
-class RamenPolicy < ApplicationPolicy
+class ReviewPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      scope
     end
   end
 
@@ -9,14 +9,9 @@ class RamenPolicy < ApplicationPolicy
     true
   end
 
-  def edit?
-    user_is_owner?
-  end
-
   def destroy?
     user_is_owner?
   end
-
 
   private
 
@@ -24,4 +19,3 @@ class RamenPolicy < ApplicationPolicy
     record.user == user
   end
 end
-
