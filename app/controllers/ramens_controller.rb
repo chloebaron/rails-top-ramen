@@ -1,6 +1,6 @@
 class RamensController < ApplicationController
   before_action :find_ramen, only: [:show, :destroy, :edit, :update]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :home, :show]
 
   def index
     @ramens = policy_scope(Ramen)

@@ -1,11 +1,35 @@
 .index-body {
-  background-color: rgba(100, 100, 100, 0.5);
   margin: 0;
-  position: relative;
-  top: 70px;
+  background-image: url(https://images.unsplash.com/photo-1524438383049-2f68a48d1286?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1600&h=900&fit=crop&ixid=eyJhcHBfaWQiOjF9&s=96895ac53036a5323611d65f28c66d82);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .fa-star .index {
   color: #E7C719;
 }
 
+.index-content {
+  margin-top: 70px;
+  padding-top: 20px;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.search {
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.form-control {
+  height: auto;
+  flex: 0 0 200px;
+  min-width: 100px;
+  font-size: 18px;
+  line-height: 1.428571429;
+  height: 52px;
+  text-align: center;
+}
