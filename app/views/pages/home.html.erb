@@ -1,4 +1,14 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(150,150,150,0.6) 75%), url('https://i.imgur.com/rPEt1g1.jpg');">
+  <div class="banner-content">
+    <h1>Top Ramen</h1>
+    <p>High Society Noodles</p>
+    <%= form_tag ramens_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Slurp"
+      %>
+    <% end %>
+    <a class="btn btn-primary btn-lg">Search for Ramen</a>
+  </div>
+</div>

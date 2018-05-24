@@ -1,9 +1,16 @@
 class RamensController < ApplicationController
   before_action :find_ramen, only: [:show, :destroy, :edit, :update]
   skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     @ramens = policy_scope(Ramen)
     @user = current_user
+
+    if params[:query].present?
+      @ramens = Ramen.global_search(params[:query])
+    else
+      @ramens = Ramen.all
+    end
   end
 
   def show
@@ -45,6 +52,9 @@ class RamensController < ApplicationController
 
   def destroy
     authorize @ramen
+  end
+
+  def search
   end
 
   private

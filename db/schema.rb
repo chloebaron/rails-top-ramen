@@ -10,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_24_000225) do
+ActiveRecord::Schema.define(version: 2018_05_24_160339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "favourites", force: :cascade do |t|
     t.bigint "user_id"
@@ -53,10 +47,9 @@ ActiveRecord::Schema.define(version: 2018_05_24_000225) do
 
   create_table "tags", force: :cascade do |t|
     t.bigint "ramen_id"
-    t.bigint "category_id"
+    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_tags_on_category_id"
     t.index ["ramen_id"], name: "index_tags_on_ramen_id"
   end
 
@@ -82,6 +75,5 @@ ActiveRecord::Schema.define(version: 2018_05_24_000225) do
   add_foreign_key "ramens", "users"
   add_foreign_key "reviews", "ramens"
   add_foreign_key "reviews", "users"
-  add_foreign_key "tags", "categories"
   add_foreign_key "tags", "ramens"
 end

@@ -1,6 +1,16 @@
 <div class="index-body";>
   <div class="container index-cards">
     <div class="row">
+      <%= form_tag ramens_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Slurp"
+        %>
+      <% end %>
+    </div>
+    <a class="btn btn-primary btn-lg">Search for Ramen</a>
+    <div class="row">
       <% @ramens.each do |ramen| %>
         <div class="col-xs-12 col-s-6 col-md-4">
           <div class="ramen-card">

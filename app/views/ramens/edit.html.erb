@@ -1,7 +1,7 @@
 <%= render 'form_new', ramen: @ramen %>
 <% unless @tags.nil? %>
   <% @tags.each do |tag| %>
-    <%= tag.category.name %>
+    <%= tag.category %>
   <% end %>
 <% end %>
 <%= render '/shared/form_tag' %>
