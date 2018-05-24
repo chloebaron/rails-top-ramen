@@ -35,7 +35,7 @@
       <% end %>
     <% end %>
     <p><%= @ramen.description %></p>
-    <% if @user %>
+    <% if @user == @ramen.user %>
       <p>Grasciously prepared by you</p>
     <% else %>
       <p>Created by: <i> <%= @ramen.user.email %> </i></p>
