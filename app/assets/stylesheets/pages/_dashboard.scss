@@ -71,6 +71,27 @@ padding: 20px;
 margin-top: 0;
 }
 
+.pending-flex {
+  display: flex;
+  justify-content: space-between;
+  width:70%;
+  margin: 30px auto;
+  align-items: center;
+
+  p {
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
+.pending-actions {
+  a{
+    margin: 8px;
+  }
+}
+
+
+
 input:checked + label {
   font-size: 20px;
   background: rgba(0, 0, 0, 0.3);
