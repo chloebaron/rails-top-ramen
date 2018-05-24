@@ -41,4 +41,7 @@
 </div>
 
 <%= render 'reviews/form_new', review: @review %>
-<%= link_to 'Edit', edit_ramen_path(@ramen) %>
+
+<% if policy(@ramen).edit? %>
+  <%= link_to 'Edit', edit_ramen_path(@ramen) %>
+<% end %>
