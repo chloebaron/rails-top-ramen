@@ -29,7 +29,7 @@
       <% else %>
         <h2><%= @ramen.name %></h2>
         <% @tags.each do |tag| %>
-          <%= tag.category %>
+          <span class="badge badge-primary"><%= tag.category %></span>
         <% end %>
       <% end %>
 
@@ -77,8 +77,9 @@
       <% end %>
       </ul>
     </div>
-
-  <%= render 'reviews/form_new', ramen: @ramen, review: @review %>
+    <% unless @ramen.user == @user %>
+      <%= render 'reviews/form_new', ramen: @ramen, review: @review %>
+    <% end %>
 
     <% if policy(@ramen).edit? %>
       <%= link_to 'Edit', edit_ramen_path(@ramen) %>

@@ -17,5 +17,9 @@ class TastesController < ApplicationController
   end
 
   def destroy
+    @taste = Taste.find(params[:id])
+    authorize @taste
+    @taste.destroy
+    redirect_to dashboard_path
   end
 end
