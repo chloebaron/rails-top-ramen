@@ -19,7 +19,9 @@ class RamensController < ApplicationController
     @review = Review.new
     @tags = Tag.where(ramen_id: params[:id])
     @reviews = Review.where(ramen_id: @ramen.id)
-    @favourite = Favourite.where(user_id: @user.id, ramen_id: @ramen.id).first
+    unless @user.nil?
+      @favourite = Favourite.where(user_id: @user.id, ramen_id: @ramen.id).first
+    end
     authorize @ramen
   end
 
