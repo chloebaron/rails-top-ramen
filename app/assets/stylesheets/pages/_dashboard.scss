@@ -1,7 +1,7 @@
 .dashboard-body {
   // background: url(https://images.unsplash.com/photo-1461727885569-b2ddec0c4328?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1600&h=900&fit=crop&ixid=eyJhcHBfaWQiOjF9&s=d991236329966001ca5951d003684575);
   background: white;
-  height: 80vh;
+  // height: 75vh;
   width: 100%;
   background-size: cover;
   margin: 0;
@@ -9,22 +9,24 @@
 }
 
 .dashboard-content {
+  vertical-align: center;
   margin: auto;
   width: 75%;
 }
 
-.main {
-  text-align: center;
+.tab-content-container {
+  // background: linear-gradient(to bottom right, $pink, #e5a8a7);
   margin-left: 10%;
   background: white;
-  height: calc(100vh-70px);
+  height: calc(100vh - 187px);
+  margin: 0 auto;
+  padding: 20px;
 }
 
 #user-ramen {
   margin-top: 0;
   display:none;
   background: rgba(0, 0, 0, 0.3);
-  height: 100vh;
   color: #E7C719;
   position: relative;
   top: 68px;
@@ -36,7 +38,6 @@
   margin-top: 0;
   display:none;
   background: rgba(0, 0, 0, 0.3);
-  height:100vh;
   color: #E7C719;
   position: relative;
   top: 68px;
@@ -50,7 +51,6 @@
   margin-top: 0;
   display:none;
   background: rgba(0, 0, 0, 0.3);
-  height:100vh;
   color: #E7C719;
   position: relative;
   top: 68px;
@@ -70,18 +70,14 @@
 .user-ramen-content {
   margin-bottom: 10px;
 }
+
 .taste-requests {
   height: 100vh;
-
 }
 
 .display h1 {
-padding: 20px;
 margin-top: 0;
-}
-
-.display {
-  height: 100vh;
+margin-bottom: 20px;
 }
 
 .pending-flex {
@@ -100,7 +96,7 @@ margin-top: 0;
 }
 
 .pending-actions {
-  a{
+  a {
     margin: 8px;
   }
 }
@@ -113,8 +109,10 @@ input:checked + label {
   color: #E7C719;
 }
 
-
 ul {
   margin-top: 5%;
 }
 
+.taste-requests {
+  height: 80%;
+}
