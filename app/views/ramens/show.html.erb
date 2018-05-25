@@ -6,7 +6,6 @@
     <!-- above placeholder for link_to favourite -->
     <% unless @ramen.user == @user %>
       <% unless @favourite.nil? %> <!-- checks to see if user has not favorited the ramen -->
-
         <% if @favourite.accepted == "Pending"%>
           <h2><%= @ramen.name %> <i class="fas fa-user-clock"></i></h2>
         <% @tags.each do |tag| %>
@@ -26,7 +25,6 @@
           <% end %>
         </h2>
        <!-- Other wise, if the user has favorited the ramen, then show name with a yellow star-->
-
       <% end %>
     <% else %>
       <h2><%= @ramen.name %></h2>
@@ -34,7 +32,37 @@
         <%= tag.category %>
       <% end %>
     <% end %>
-    <p><%= @ramen.description %></p>
+
+    <% unless @user == @ramen.user %>
+      <div class="description-flex">
+        <p><%= @ramen.description %></p>
+        <div class="taste">
+          <i class="fas fa-utensil-spoon text-center"></i>
+          <p><%= @ramen.portions_left %> spoonfuls left</p>
+          <p><i class="fas fa-dollar-sign"></i><%= @ramen.price_per_portion * @portion.portion_spoonful%></p>
+          <% if @taste == nil %>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestModal">
+              Request a Taste
+            </button>
+          <% elsif @taste.accepted == false %>
+            <div class="status">
+              <div class="btn btn-warning">
+                <i class="fas fa-user-clock"></i>
+              </div>
+            </div>
+          <% elsif @taste.accepted == true %>
+              <div class="status">
+                <div class="btn btn-success">Accepted!</div>
+              </div>
+          <% elsif @taste.destroyed?%>
+              <h4>Denied <i class="fas fa-times-circle"></i></h4>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <p><%= @ramen.description %></p>
+    <% end %>
+
     <% if @user == @ramen.user %>
       <p>Grasciously prepared by you</p>
     <% else %>
@@ -58,3 +86,28 @@
 <% if policy(@ramen).edit? %>
   <%= link_to 'Edit', edit_ramen_path(@ramen) %>
 <% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="requestModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="requestModalLongTitle">Taste</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-content text-center">
+          <p>Address</p>
+          <%= link_to "Show on Map", '#' %>
+          <p><%= @ramen.price_per_portion * @portion.portion_spoonful %> for <%= @portion.portion_spoonful %> spoonful(s)</p>
+          <%= link_to(ramen_tastes_path(@ramen), method: :post) do %>
+            <div class="btn btn-primary">Request</div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

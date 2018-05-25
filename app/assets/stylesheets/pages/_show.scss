@@ -26,6 +26,42 @@
 // .yellow {
 //   color: #E7C719;
 // }
+.description-flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .taste {
+    margin-left: 15%;
+    flex-grow: 1;
+    width: 600px;
+  }
+
+  .btn-warning{
+    border-color: #E67E22;
+    width: 100%;
+  }
+
+  .btn-warning:hover {
+    background-color:#E67E22;
+    border-color: #E67E22;
+  }
+}
+
+.status {
+  .btn {
+    cursor: default;
+  }
+}
+
+.taste {
+  padding: 4px;
+  border-radius: 5px;
+  background: rgba(172, 172, 172, 0.1);
+  text-align: center;
+  p {
+    font-size: 20px;
+  }
+}
 
 .fa-star {
   color: black;

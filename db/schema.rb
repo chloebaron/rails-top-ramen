@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_24_160339) do
+ActiveRecord::Schema.define(version: 2018_05_25_043758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,17 +18,27 @@ ActiveRecord::Schema.define(version: 2018_05_24_160339) do
   create_table "favourites", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "ramen_id"
+    t.string "accepted", default: "Pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "accepted", default: "Pending"
     t.index ["ramen_id"], name: "index_favourites_on_ramen_id"
     t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
+  create_table "portions", force: :cascade do |t|
+    t.bigint "ramen_id"
+    t.integer "portion_spoonful"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ramen_id"], name: "index_portions_on_ramen_id"
+  end
+
   create_table "ramens", force: :cascade do |t|
     t.string "name"
-    t.text "description"
+    t.string "description"
     t.bigint "user_id"
+    t.integer "portions_left"
+    t.integer "price_per_portion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "photo"
@@ -36,11 +46,11 @@ ActiveRecord::Schema.define(version: 2018_05_24_160339) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.text "content"
     t.bigint "user_id"
     t.bigint "ramen_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "content"
     t.index ["ramen_id"], name: "index_reviews_on_ramen_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -51,6 +61,16 @@ ActiveRecord::Schema.define(version: 2018_05_24_160339) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ramen_id"], name: "index_tags_on_ramen_id"
+  end
+
+  create_table "tastes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "portion_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "accepted"
+    t.index ["portion_id"], name: "index_tastes_on_portion_id"
+    t.index ["user_id"], name: "index_tastes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,8 +92,11 @@ ActiveRecord::Schema.define(version: 2018_05_24_160339) do
 
   add_foreign_key "favourites", "ramens"
   add_foreign_key "favourites", "users"
+  add_foreign_key "portions", "ramens"
   add_foreign_key "ramens", "users"
   add_foreign_key "reviews", "ramens"
   add_foreign_key "reviews", "users"
   add_foreign_key "tags", "ramens"
+  add_foreign_key "tastes", "portions"
+  add_foreign_key "tastes", "users"
 end
