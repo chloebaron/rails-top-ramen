@@ -1,4 +1,4 @@
-<%= simple_form_for [@ramen, @review] do |f|%>
-  <%= f.input :content %>
-  <%= f.submit %>
+<%= simple_form_for [ramen, review], remote: true do |f|%>
+  <%= f.input :content, as: :text %>
+  <%= f.button :submit %>
 <% end %>

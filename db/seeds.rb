@@ -35,3 +35,4 @@ names.zip(descriptions).each do |e|
 Tag.create!(ramen_id: 1, category: 'Spicy')
 Tag.create!(ramen_id: 2, category: 'Sweet')
 Tag.create!(ramen_id: 3, category: 'Terriyaki')
+r
