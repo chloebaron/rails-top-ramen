@@ -1,115 +1,104 @@
-<div class="dash-body">
-  <div id="user-tabs">
-    <div class="ramen-tab">
-      <input id="ramens" type="radio" name="tabs">
-      <label for="ramens"><h3> Ramen </h3></label>
-    </div>
 
-    <div class="review-tab">
-      <input id="reviews" type="radio" name="tabs">
-      <label for="reviews"><h3> Reviews </h3></label>
-    </div>
-
-    <div class="requests-tab">
-      <input id="requests" type="radio" name="tabs">
-      <label for="requests"><h3> Requests </h3></label>
-    </div>
-  </div>
-
-  <div class="sidenav-bottom">
-    <div class="buttons text-center" id="add-ramen">
-      <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_ramen_path %>
-    </div>
-
-    <div class="buttons text-center">
-      <%= link_to "Home", ramens_path, class: "btn btn-primary" %>
-    </div>
-  </div>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="ramen-tab" data-toggle="tab" href="#ramen" role="tab" aria-controls="ramen" aria-selected="false">Ramen</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Requests</a>
+    </li>
+  </ul>
 
   <div class="main">
-    <div class="content" id="user-ramen">
-      <div class="display">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <h1>Hello User</h1>
-            </div>
-          </div>
-          <div class="row">
-            <% @user.ramens.each do |ramen| %>
-              <div class="col-xs-12 col-s-6 col-md-3">
-              <div class="card user-ramen-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-                url('<%= cl_image_path ramen.photo, height: 300, width: 300, crop: :fill %>')">
-                  <div class="user-ramen-content">
-                    <div class="card-ramen-name">
-                      <%= ramen.name %>
-                      <!-- <p><%= ramen.description.truncate(3) %></p> -->
-                    </div>
-                  </div>
-                  <%= link_to " ", ramen_path(ramen), class: "card-link"%>
-                </div>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade active" id="ramen" role="tabpanel" aria-labelledby="ramen-tab">
+        <div class="display">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1>Hello User</h1>
               </div>
-            <% end %>
+            </div>
+            <div class="row">
+              <% @user.ramens.each do |ramen| %>
+                <div class="col-xs-12 col-s-6 col-md-3">
+                <div class="card user-ramen-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+                  url('<%= cl_image_path ramen.photo, height: 300, width: 300, crop: :fill %>')">
+                    <div class="user-ramen-content">
+                      <div class="card-ramen-name">
+                        <%= ramen.name %>
+                        <p><%= ramen.description.truncate(3) %></p>
+                      </div>
+                    </div>
+                    <%= link_to " ", ramen_path(ramen), class: "card-link"%>
+                  </div>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-
-    <div class="content" id="user-reviews">
-      <div class="display">
-        <h1>Bonjour</h1>
-        <h2>Reviews that you made</h2>
-        <ul>
-          <% unless @reviews_myself.nil? %>
-
-            <% @reviews_myself.each do |review| %>
-             <li><%=review.user.email %></li>
-             <li><%= review.content %></li>
-            <% end %>
-
-          <% end %>
-        </ul>
-        <h2>Reviews for your ramen</h2>
-        <ul>
-            <% unless @reviews_others.nil? %>
-
-            <% @reviews_others.each do |review| %>
-             <li><%=review.user.email %></li>
-             <li><%= review.content %></li>
-            <% end %>
-
-          <% end %>
-        </ul>
-      </div>
-    </div>
-
-    <div class="content" id="user-requests">
-      <div class="display">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <h1>Pending requests</h1>
-            </div>
-            <% @user.ramens.each do |ramen| %>
-              <% ramen.favourites.each do |fav| %>
-                <% if fav.accepted == "Pending" %>
-                <div class="col-12 ">
-                  <div class="pending-flex ">
-                    <p><%= fav.user.email %> wants to add <%= fav.ramen.name %> to their favorite's list</p>
-
-                    <div class="pending-actions">
-                      <%= link_to "Accept", favourite_path(fav), class: "btn btn-success", id: "accept-fav", method: :patch %>
-                      <%= link_to "Decline", favourite_path(fav), class: "btn btn-danger", id: "reject-fav", method: :delete %>
-                    </div>
-                  </div>
-                </div>
-                  <!-- fix the duplicated display request -->
-                <% end %>
+      <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+        <div class="display">
+          <h1>Bonjour</h1>
+          <h2>Reviews that you made</h2>
+          <ul>
+            <% unless @reviews_myself.nil? %>
+              <% @reviews_myself.each do |review| %>
+               <li><%=review.user.email %></li>
+               <li><%= review.content %></li>
               <% end %>
             <% end %>
-          </div>
+          </ul>
+          <h2>Reviews for your ramen</h2>
+          <ul>
+            <% unless @reviews_others.nil? %>
+              <% @reviews_others.each do |review| %>
+               <li><%=review.user.email %></li>
+               <li><%= review.content %></li>
+              <% end %>
+            <% end %>
+          </ul>
         </div>
+      </div>
+
+      <div class="tab-pane fade" id="request" role="tabpanel" aria-labelledby="request-tab">
+        <div class="taste-requests">
+          <% @user.ramens.each do |ramen| %>
+            <% ramen.portions[0].tastes.each do |taste_request| %>
+              <p><%= ramen.portions[0].users[0].email %> would like to taste <%= ramen.name %></p>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="display">
+          <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <h1>Pending requests</h1>
+                </div>
+                <% @user.ramens.each do |ramen| %>
+                  <% ramen.favourites.each do |fav| %>
+                    <% if fav.accepted == "Pending" %>
+                      <div class="col-12 ">
+                        <div class="pending-flex ">
+                          <p><%= fav.user.email %> wants to add <%= fav.ramen.name %> to their favorite's list</p>
+
+                          <div class="pending-actions">
+                            <%= link_to "Accept", favourite_path(fav), class: "btn btn-success", id: "accept-fav", method: :patch %>
+                            <%= link_to "Decline", favourite_path(fav), class: "btn btn-danger", id: "reject-fav", method: :delete %>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def dashboard
+    @tastes = Taste.all
     @user = current_user
     @reviews_myself = @user.reviews
     @reviews_others = Ramen.where(user_id: @user.id).map do |ramen|
