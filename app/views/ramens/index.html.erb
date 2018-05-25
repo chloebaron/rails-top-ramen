@@ -30,7 +30,7 @@
             <div class="ramen-image">
               <%= link_to (cl_image_tag ramen.photo, height: 150, crop: :fill), ramen_path(ramen.id) %>
             </div>
-            <div class="ramen-content text-center">
+            <div class="ramen-card-content text-center">
               <h4><%= ramen.name %></h4>
               <p><%= ramen.description.truncate_words(8) %></p>
             </div>

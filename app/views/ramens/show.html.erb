@@ -1,7 +1,6 @@
 <div class="ramen-photo" style="background-image: url('<%= cl_image_path @ramen.photo, crop: :fill %>');">
-  <%= render "shared/navbar" %>
 </div>
-<div class="container">
+<div class="ramen-content">
   <div class="ramen-description">
     <!-- above placeholder for link_to favourite -->
     <% unless @ramen.user == @user %>
@@ -77,13 +76,15 @@
       <%= review.content %>
     </ul>
     <% end %>
+  </div>
+
+  <%= render 'reviews/form_new', review: @review %>
+
+  <% if policy(@ramen).edit? %>
+    <%= link_to 'Edit', edit_ramen_path(@ramen) %>
+  <% end %>
+
 </div>
-
-<%= render 'reviews/form_new', review: @review %>
-
-<% if policy(@ramen).edit? %>
-  <%= link_to 'Edit', edit_ramen_path(@ramen) %>
-<% end %>
 
 <!-- Modal -->
 <div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="requestModalTitle" aria-hidden="true">
