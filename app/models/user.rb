@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :favourites, dependent: :destroy
   has_many :fav_ramens, through: :favourites, source: :ramen
   has_many :reviews, dependent: :destroy
+  has_many :tastes
 end
