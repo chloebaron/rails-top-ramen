@@ -74,8 +74,8 @@
     <ul>
       <% @reviews.each do |review| %>
       <%= render 'reviews/show', review: review %>
-    </ul>
     <% end %>
+    </ul>
 </div>
 
 <%= render 'reviews/form_new', ramen: @ramen, review: @review %>
