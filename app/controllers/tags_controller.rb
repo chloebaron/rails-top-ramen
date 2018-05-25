@@ -4,12 +4,14 @@ class TagsController < ApplicationController
   end
 
   def create
-    if authorize Tag.create!(
-      ramen_id: params[:id],
-      category: tag_params[:category],
-      )
+    @ramen = Ramen.find(params[:id])
+    @tag = Tag.new(category: tag_params[:category])
+    @tag.ramen = @ramen
+    authorize @tag
+    if @tag.save
+      redirect_to ramen_path(@ramen)
     else
-      render :new
+      redirect_to edit_ramen_path(@ramen)
     end
   end
 

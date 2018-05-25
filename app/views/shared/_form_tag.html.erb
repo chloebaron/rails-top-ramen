@@ -1,4 +1,4 @@
 <%= simple_form_for @tag, :url => tag_create_path, :method => :post  do |f| %>
-  <%= f.input :category %>
+  <%= f.input :category, collection: Tag.categories %>
   <%= f.submit 'Add a tag' %>
 <% end %>
