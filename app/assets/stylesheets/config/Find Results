@@ -1,0 +1,13 @@
+Searching 191 files for "poir"
+
+/Users/chloebaron/code/chloebaron/rails-top-ramen/app/assets/stylesheets/pages/_home.scss:
+
+
+/Users/chloebaron/code/chloebaron/rails-top-ramen/app/views/layouts/application.html.erb:
+    8      <%= action_cable_meta_tag %>
+
+    9      <%= stylesheet_link_tag 'application', media: 'all' %>
+   11      <%#= stylesheet_pack_tag 'application', media: 'all' %>
+   12      <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+2 matches across 2 files
