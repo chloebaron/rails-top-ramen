@@ -74,9 +74,6 @@
     <ul>
       <% @reviews.each do |review| %>
       <%= render 'reviews/show', review: review %>
-      <%= "hello from show " %>
-<!--       <%= review.user.email %>
-      <%= review.content %> -->
     </ul>
     <% end %>
 </div>
