@@ -1,7 +1,11 @@
-<%= render 'form_new', ramen: @ramen %>
-<% unless @tags.nil? %>
-  <% @tags.each do |tag| %>
-    <%= tag.category %>
-  <% end %>
-<% end %>
-<%= render '/shared/form_tag' %>
+<div class="ramen-form-container">
+  <div class="ramen-new-form">
+    <%= render 'form_new', ramen: @ramen %>
+    <% unless @tags.nil? %>
+      <% @tags.each do |tag| %>
+        <%= tag.category %>
+      <% end %>
+    <% end %>
+    <%= render '/shared/form_tag' %>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+.new-container {
+  height: calc(100vh - 140px);
+}
+
+.new-ramen-background {
+  background: linear-gradient(to bottom right, $pink, #e5a8a7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.new-content {
+  width: 40%;
+  height: auto;
+  align-content: center;
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-family: Raleway;
+}
+
+.form-inputs .ramen_name {
+  color: white;
+}
+
+#new_ramen label {
+  color: white;
+  font-family: Raleway;
+  margin: 0 auto;
+}
+
+#new_ramen ramen_name {
+  margin: 5px auto;
+}
+
+
+.new-crown {
+  color: $yellow;
+  font-size: 48px;
+  text-shadow: 1px 1px 2px rgba(50,50,50,0.5);
+  text-align: center;
+}
+
+// .form-actions .btn {
+//   color: $pink;
+// }
+
