@@ -12,6 +12,9 @@ class TastesController < ApplicationController
     @taste = Taste.find(params[:id])
     authorize @taste
     @taste.accepted = true
+    @tasted_ramen = @taste.portion.ramen
+    @tasted_ramen.portions_left -= 1
+    @tasted_ramen.save!
     @taste.save
     redirect_to dashboard_path
   end
