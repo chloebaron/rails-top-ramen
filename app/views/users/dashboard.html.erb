@@ -42,25 +42,25 @@
       </div>
 
       <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+
         <div class="dashboard-content">
-          <div class="display">
-            <h1>Bonjour</h1>
-            <h2>Reviews that you made</h2>
-            <ul>
-              <% unless @reviews_myself.nil? %>
-                <% @reviews_myself.each do |review| %>
-                 <li><%=review.user.email %></li>
-                 <li><%= review.content %></li>
-                <% end %>
+        <div class="display">
+          <h1>Bonjour</h1>
+          <h2>Reviews that you made</h2>
+          <ul class="list-group list-group-flush">
+            <% unless @reviews_myself.nil? %>
+              <% @reviews_myself.each do |review| %>
+               <p><%=review.user.email %></p>
+               <li class="list-group-item"><%= review.content %></li>
               <% end %>
-            </ul>
-            <h2>Reviews for your ramen</h2>
-            <ul>
-              <% unless @reviews_others.nil? %>
-                <% @reviews_others.each do |review| %>
-                 <li><%=review.user.email %></li>
-                 <li><%= review.content %></li>
-                <% end %>
+            <% end %>
+          </ul>
+          <h2>Reviews for your ramen</h2>
+          <ul class="list-group list-group-flush">
+            <% unless @reviews_others.nil? %>
+              <% @reviews_others.each do |review| %>
+               <p><%=review.user.email %></p>
+               <li class="list-group-item"><%= review.content %></li>
               <% end %>
             </ul>
           </div>
@@ -68,36 +68,58 @@
       </div>
 
       <div class="tab-pane fade" id="request" role="tabpanel" aria-labelledby="request-tab">
-        <div class="taste-requests">
-          <% @user.ramens.each do |ramen| %>
-            <% ramen.portions[0].tastes.each do |taste_request| %>
-              <p><%= ramen.portions[0].users[0].email %> would like to taste <%= ramen.name %></p>
+        <ul class="nav nav-tabs" id="pendingTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="favourites-tab" data-toggle="tab" href="#favourites" role="tab" aria-controls="favourites" aria-selected="false">Favourite Requests</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" id="tastes-tab" data-toggle="tab" href="#tastes" role="tab" aria-controls="tastes" aria-selected="false">Taste Requests</a>
+          </li>
+        </ul>
+
+      <div class="tab-content" id="pendingTabContent">
+        <div class="tab-pane fade active" id="tastes" role="tabpanel" aria-labelledby="tastes-tab">
+          <div class="taste-requests">
+            <% @user.ramens.each do |ramen| %>
+              <% ramen.portions[0].tastes.each do |taste_request| %>
+                <% if taste_request.accepted == false %>
+                  <div class="pending-flex ">
+                    <p><%= ramen.portions[0].users[0].email %> would like to taste <%= ramen.name %></p>
+
+                    <div class="pending-actions">
+                      <%= link_to "Allow", taste_path(taste_request), class: "btn btn-success", id: "accept-fav", method: :patch %>
+                      <%= link_to "Reject", taste_path(taste_request), class: "btn btn-danger", id: "reject-fav", method: :delete %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
 
-        <div class="display">
-          <div class="dashboard-content">
-              <div class="row">
-                <div class="col-12">
-                  <h1>Pending requests</h1>
-                </div>
-                <% @user.ramens.each do |ramen| %>
-                  <% ramen.favourites.each do |fav| %>
-                    <% if fav.accepted == "Pending" %>
-                      <div class="col-12 ">
-                        <div class="pending-flex ">
-                          <p><%= fav.user.email %> wants to add <%= fav.ramen.name %> to their favorite's list</p>
 
-                          <div class="pending-actions">
-                            <%= link_to "Accept", favourite_path(fav), class: "btn btn-success", id: "accept-fav", method: :patch %>
-                            <%= link_to "Decline", favourite_path(fav), class: "btn btn-danger", id: "reject-fav", method: :delete %>
+        <div class="tab-pane fade" id="favourites" role="tabpanel" aria-labelledby="favourites-tab">
+          <div class="display">
+            <div class="container">
+                <div class="row">
+                  <% @user.ramens.each do |ramen| %>
+                    <% ramen.favourites.each do |fav| %>
+                      <% if fav.accepted == "Pending" %>
+                        <div class="col-12 ">
+                          <div class="pending-flex ">
+                            <p><%= fav.user.email %> wants to add <%= fav.ramen.name %> to their favorite's list</p>
+
+                            <div class="pending-actions">
+                              <%= link_to "Accept", favourite_path(fav), class: "btn btn-success", id: "accept-fav", method: :patch %>
+                              <%= link_to "Decline", favourite_path(fav), class: "btn btn-danger", id: "reject-fav", method: :delete %>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      <% end %>
                     <% end %>
                   <% end %>
-                <% end %>
+                </div>
               </div>
           </div>
         </div>

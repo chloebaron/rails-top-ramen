@@ -59,6 +59,7 @@
   overflow-y: auto;
 }
 
+
 #user-tabs input {
   display: none;
 }
@@ -69,11 +70,19 @@
 
 .user-ramen-content {
   margin-bottom: 10px;
+
+.taste-requests {
+  height: 100vh;
+
 }
 
 .display h1 {
 padding: 20px;
 margin-top: 0;
+}
+
+.display {
+  height: 100vh;
 }
 
 .pending-flex {
@@ -82,10 +91,12 @@ margin-top: 0;
   width:70%;
   margin: 30px auto;
   align-items: center;
-
+  padding: 10px;
+  border-radius: 8px;
+  color: $pink;
+  background-color: rgba(196, 196, 196, 0.6);
   p {
-    font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
