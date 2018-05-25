@@ -1,15 +1,12 @@
 /* Main navbar */
 .navbar-wagon {
-  // background: rgba(0,0,0,0.3);
+  background: white;
   transition: all 0.3s ease;
   height: 70px;
   padding: 0px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: absolute;
-  top: 0;
-  // background: rgba(0,0,0,0.1);
 }
 
 /* User Avatar */
@@ -18,7 +15,6 @@
   width: 35px;
   border-radius: 50%;
 }
-
 /* Right section */
 .navbar-wagon-right {
   display: flex;
@@ -27,13 +23,15 @@
   padding-bottom: 5px;
   a {
     font-size: 16px;
+    font-weight: bold;
     color: black;
+    text-shadow: 1 1 2 rgba(200,200,200,0.5);
   }
 }
 
 .navbar-wagon-right:hover {
   margin-bottom: -2px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid $yellow;
   font-size: 32px;
 }
 /* Basic navbar item */
