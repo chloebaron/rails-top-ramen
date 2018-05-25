@@ -35,9 +35,12 @@ class RamensController < ApplicationController
   def create
     user = current_user
     @ramen = Ramen.new(ramen_params)
+    @ramen.portions_left = 5
+    @ramen.price_per_portion = 10
     authorize @ramen
     @ramen.user = user
     if @ramen.save!
+      Portion.create!(ramen_id: @ramen.id, portion_spoonful: 1)
       redirect_to ramen_path(@ramen)
     else
       render :new
