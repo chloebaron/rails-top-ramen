@@ -60,12 +60,12 @@
       <div class="display">
         <h1>Bonjour</h1>
         <h2>Reviews that you made</h2>
-        <ul>
+        <ul class="list-group list-group-flush">
           <% unless @reviews_myself.nil? %>
 
             <% @reviews_myself.each do |review| %>
-             <li><%=review.user.email %></li>
-             <li><%= review.content %></li>
+             <li class="list-group-item"><%=review.user.email %></li>
+             <li class="list-group-item"><%= review.content %></li>
             <% end %>
 
           <% end %>
@@ -75,8 +75,8 @@
             <% unless @reviews_others.nil? %>
 
             <% @reviews_others.each do |review| %>
-             <li><%=review.user.email %></li>
-             <li><%= review.content %></li>
+             <li class="list-group-item"><%=review.user.email %></li>
+             <li class="list-group-item"><%= review.content %></li>
             <% end %>
 
           <% end %>
