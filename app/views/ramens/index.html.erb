@@ -1,14 +1,14 @@
 <div class="index-body">
   <div class="container index-content">
     <div class="search">
-      <%= form_tag ramens_path, method: :get do %>
+      <%= form_tag ramens_path, class: 'form-inline', method: :get do %>
         <%= text_field_tag :query,
           params[:query],
           class: "form-control",
           placeholder: "Slurp"
         %>
+        <%= submit_tag "Search",  class: 'btn btn-primary btn-lg'%>
       <% end %>
-      <a class="btn btn-primary btn-lg">Search for Ramen</a>
     </div>
     <div class="row">
       <% @ramens.each do |ramen| %>
