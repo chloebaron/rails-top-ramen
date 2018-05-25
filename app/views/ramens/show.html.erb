@@ -1,88 +1,90 @@
-<div class="ramen-photo" style="background-image: url('<%= cl_image_path @ramen.photo, crop: :fill %>');">
-</div>
-<div class="ramen-content">
-  <div class="ramen-description">
-    <!-- above placeholder for link_to favourite -->
-    <% unless @ramen.user == @user %>
-      <% unless @favourite.nil? %> <!-- checks to see if user has not favorited the ramen -->
-        <% if @favourite.accepted == "Pending"%>
-          <h2><%= @ramen.name %> <i class="fas fa-user-clock"></i></h2>
-        <% @tags.each do |tag| %>
-          <%= tag.category %>
-        <% end %>
-        <% elsif @favourite.accepted == "Accepted" %>
-          <h2><%= @ramen.name %> <i class="fa fa-star " style= "color: #E7C719;"></i></h2>
-        <% end %>
-
-        <% else %>
-          <h2><%= @ramen.name %>
+<div class="show-wrapper">
+  <div class="ramen-photo" style="background-image: url('<%= cl_image_path @ramen.photo, crop: :fill %>');">
+  </div>
+  <div class="ramen-content">
+    <div class="ramen-description">
+      <!-- above placeholder for link_to favourite -->
+      <% unless @ramen.user == @user %>
+        <% unless @favourite.nil? %> <!-- checks to see if user has not favorited the ramen -->
+          <% if @favourite.accepted == "Pending"%>
+            <h2><%= @ramen.name %> <i class="fas fa-user-clock"></i></h2>
           <% @tags.each do |tag| %>
             <%= tag.category %>
           <% end %>
-          <%= link_to(ramen_favourites_path(@ramen), method: :post) do %>
-            <i class="fa fa-star favourite" id = "fav-request" ></i>
+          <% elsif @favourite.accepted == "Accepted" %>
+            <h2><%= @ramen.name %> <i class="fa fa-star " style= "color: #E7C719;"></i></h2>
           <% end %>
-        </h2>
-       <!-- Other wise, if the user has favorited the ramen, then show name with a yellow star-->
-      <% end %>
-    <% else %>
-      <h2><%= @ramen.name %></h2>
-      <% @tags.each do |tag| %>
-        <%= tag.category %>
-      <% end %>
-    <% end %>
 
-    <% unless @user == @ramen.user %>
-      <div class="description-flex">
-        <p><%= @ramen.description %></p>
-        <div class="taste">
-          <i class="fas fa-utensil-spoon text-center"></i>
-          <p><%= @ramen.portions_left %> spoonfuls left</p>
-          <p><i class="fas fa-dollar-sign"></i><%= @ramen.price_per_portion * @portion.portion_spoonful%></p>
-          <% if @taste == nil %>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestModal">
-              Request a Taste
-            </button>
-          <% elsif @taste.accepted == false %>
-            <div class="status">
-              <div class="btn btn-warning">
-                <i class="fas fa-user-clock"></i>
-              </div>
-            </div>
-          <% elsif @taste.accepted == true %>
+          <% else %>
+            <h2><%= @ramen.name %>
+            <% @tags.each do |tag| %>
+              <%= tag.category %>
+            <% end %>
+            <%= link_to(ramen_favourites_path(@ramen), method: :post) do %>
+              <i class="fa fa-star favourite" id = "fav-request" ></i>
+            <% end %>
+          </h2>
+         <!-- Other wise, if the user has favorited the ramen, then show name with a yellow star-->
+        <% end %>
+      <% else %>
+        <h2><%= @ramen.name %></h2>
+        <% @tags.each do |tag| %>
+          <%= tag.category %>
+        <% end %>
+      <% end %>
+
+      <% unless @user == @ramen.user %>
+        <div class="description-flex">
+          <p><%= @ramen.description %></p>
+          <div class="taste">
+            <i class="fas fa-utensil-spoon text-center"></i>
+            <p><%= @ramen.portions_left %> spoonfuls left</p>
+            <p><i class="fas fa-dollar-sign"></i><%= @ramen.price_per_portion * @portion.portion_spoonful%></p>
+            <% if @taste == nil %>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestModal">
+                Request a Taste
+              </button>
+            <% elsif @taste.accepted == false %>
               <div class="status">
-                <div class="btn btn-success">Accepted!</div>
+                <div class="btn btn-warning">
+                  <i class="fas fa-user-clock"></i>
+                </div>
               </div>
-          <% elsif @taste.destroyed?%>
-              <h4>Denied <i class="fas fa-times-circle"></i></h4>
-          <% end %>
+            <% elsif @taste.accepted == true %>
+                <div class="status">
+                  <div class="btn btn-success">Accepted!</div>
+                </div>
+            <% elsif @taste.destroyed?%>
+                <h4>Denied <i class="fas fa-times-circle"></i></h4>
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% else %>
-      <p><%= @ramen.description %></p>
+      <% else %>
+        <p><%= @ramen.description %></p>
+      <% end %>
+
+      <% if @user == @ramen.user %>
+        <p>Grasciously prepared by you</p>
+      <% else %>
+        <p>Created by: <i> <%= @ramen.user.email %> </i></p>
+      <% end %>
+    </div>
+
+    <div class="review" id = "reviews">
+      <ul>
+        <% @reviews.each do |review| %>
+        <%= render 'reviews/show', review: review %>
+      <% end %>
+      </ul>
+    </div>
+
+  <%= render 'reviews/form_new', ramen: @ramen, review: @review %>
+
+    <% if policy(@ramen).edit? %>
+      <%= link_to 'Edit', edit_ramen_path(@ramen) %>
     <% end %>
 
-    <% if @user == @ramen.user %>
-      <p>Grasciously prepared by you</p>
-    <% else %>
-      <p>Created by: <i> <%= @ramen.user.email %> </i></p>
-    <% end %>
   </div>
-
-  <div class="review" id = "reviews">
-    <ul>
-      <% @reviews.each do |review| %>
-      <%= render 'reviews/show', review: review %>
-    <% end %>
-    </ul>
-</div>
-
-<%= render 'reviews/form_new', ramen: @ramen, review: @review %>
-
-  <% if policy(@ramen).edit? %>
-    <%= link_to 'Edit', edit_ramen_path(@ramen) %>
-  <% end %>
-
 </div>
 
 <!-- Modal -->
