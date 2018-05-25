@@ -4,6 +4,7 @@ class Ramen < ApplicationRecord
   has_many :users, through: :favourites
   has_many :reviews, dependent: :destroy
   has_many :tags, dependent: :destroy
+  has_many :portions
   mount_uploader :photo, PhotoUploader
 
   # specify a ramen will have many users to fav it.

@@ -15,7 +15,9 @@ class RamensController < ApplicationController
   end
 
   def show
+    @portion = @ramen.portions[0]
     @user = current_user
+    @taste = Taste.where("portion_id= ?", @portion.id)[0]
     @review = Review.new
     @tags = Tag.where(ramen_id: params[:id])
     @reviews = Review.where(ramen_id: @ramen.id)
@@ -67,7 +69,7 @@ class RamensController < ApplicationController
   end
 
   def ramen_params
-    params.require(:ramen).permit(:name, :description, :photo)
+    params.require(:ramen).permit(:name, :description, :photo, :portions, :price_per_portion)
   end
 
 end
