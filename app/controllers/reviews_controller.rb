@@ -10,10 +10,30 @@ class ReviewsController < ApplicationController
       user_id: current_user.id,
       content: review_params[:content]
       )
-      redirect_to ramen_path(params[:ramen_id])
+      respond_to do |format|
+      format.html { redirect_to ramen_path(@ramen) }
+      format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
+      # redirect_to ramen_path(params[:ramen_id])
     else
-      render :new
+      respond_to do |format|
+        format.html { render 'ramens/show' }
+        format.js  # <-- idem
+      end
     end
+
+
+  #       if @review.save
+  #     respond_to do |format|
+  #       format.html { redirect_to restaurant_path(@restaurant) }
+  #       format.js  # <-- will render `app/views/reviews/create.js.erb`
+  #     end
+  #   else
+  #     respond_to do |format|
+  #       format.html { render 'restaurants/show' }
+  #       format.js  # <-- idem
+  #     end
+  #   end
   end
 
   def destroy
