@@ -12,4 +12,9 @@ class TastePolicy < ApplicationPolicy
   def update?
     true
   end
+
+  def destroy?
+    record.portion.ramen.user = user
+  end
+
 end
