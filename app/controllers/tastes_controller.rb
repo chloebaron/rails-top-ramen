@@ -8,6 +8,14 @@ class TastesController < ApplicationController
     redirect_to ramen_path(@ramen)
   end
 
+  def update
+    @taste = Taste.find(params[:id])
+    authorize @taste
+    @taste.accepted = true
+    @taste.save
+    redirect_to dashboard_path
+  end
+
   def destroy
   end
 end
