@@ -42,11 +42,13 @@
     <% end %>
   </div>
 
-  <div class="review">
+  <div class="review" id = "reviews">
     <ul>
       <% @reviews.each do |review| %>
-      <%= review.user.email %>
-      <%= review.content %>
+      <%= render 'reviews/show', review: review %>
+      <%= "hello from show " %>
+<!--       <%= review.user.email %>
+      <%= review.content %> -->
     </ul>
     <% end %>
 </div>
