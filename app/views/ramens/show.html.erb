@@ -81,7 +81,7 @@
     <% end %>
 </div>
 
-<%= render 'reviews/form_new', review: @review %>
+<%= render 'reviews/form_new', ramen: @ramen, review: @review %>
 
 <% if policy(@ramen).edit? %>
   <%= link_to 'Edit', edit_ramen_path(@ramen) %>

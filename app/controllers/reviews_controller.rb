@@ -1,15 +1,21 @@
 class ReviewsController < ApplicationController
-  def new
+  def show
+    @ramen = Ramen.find(params[:ramen_id])
     @review = Review.new
-    authorize @review
+  end
+
+  def new
+
   end
 
   def create
-    if authorize Review.create!(
-      ramen_id: params[:ramen_id],
-      user_id: current_user.id,
-      content: review_params[:content]
-      )
+    @ramen = Ramen.find(params[:ramen_id])
+    @review = Review.new(review_params)
+    @review.user = current_user
+    @review.ramen = @ramen
+
+    authorize @review
+    if @review.save!
       respond_to do |format|
       format.html { redirect_to ramen_path(@ramen) }
       format.js  # <-- will render `app/views/reviews/create.js.erb`
